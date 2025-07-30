@@ -286,6 +286,14 @@ button:nth-child(2):hover {
         width: 100px;
         height: 40px;
         font-size: 0.9em;
+        /* Improve touch interaction */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 }
 
@@ -301,6 +309,21 @@ button:nth-child(2):hover {
         width: 120px;
         height: 45px;
         font-size: 1em;
+        /* Enhanced touch experience */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* Special styling for No button on mobile */
+    button:nth-child(2) {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 }
 
@@ -345,6 +368,15 @@ button:nth-child(2):hover {
         transform: translateY(-15px) rotate(5deg); 
         opacity: 1;
     }
+}
+
+/* Mobile button shake animation */
+@keyframes mobileButtonShake {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+    75% { transform: scale(1.05) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
 /* Mobile kitty decorations */

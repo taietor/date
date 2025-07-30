@@ -82,7 +82,8 @@ yesBtn.addEventListener("click", (e) => {
   document.body.style.background = "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)";
 });
 
-noBtn.addEventListener("mouseover", () => {
+// Function to move the No button (shared by both hover and touch)
+function moveNoButton() {
   const wrapper = document.querySelector(".wrapper");
   const wrapperRect = wrapper.getBoundingClientRect();
   const noBtnRect = noBtn.getBoundingClientRect();
@@ -100,10 +101,11 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.position = "fixed";
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
+  noBtn.style.transition = "all 0.3s ease";
   
   // Change message occasionally
   if(noClickCount < sadMessages.length) {
-    question.innerHTML = sadMessages[noClickCount] + " Usciresti con me, Denisa? 💖";
+    question.innerHTML = sadMessages[noClickCount] + " Usciresti con me? 💖";
     noClickCount++;
   }
   
@@ -112,6 +114,27 @@ noBtn.addEventListener("mouseover", () => {
   setTimeout(() => {
     gif.style.filter = "none";
   }, 1000);
+}
+
+// Desktop: move on hover
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// Mobile: move on touch events
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // Prevent default touch behavior
+  moveNoButton();
+});
+
+// Also handle click events for mobile (as backup)
+noBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevent actual click
+  moveNoButton();
+  return false; // Ensure the click doesn't do anything
+});
+
+// Prevent context menu on the button
+noBtn.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
 });
 
 // Add hover effects to buttons
